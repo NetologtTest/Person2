@@ -27,16 +27,15 @@ public class Person {
         this.age = age;
         this.city = city;
     }
-
-    public boolean hasAge() {
+ public boolean hasAge() {
         if (age < 0) {
-            return false;
+            throw new IllegalArgumentException("данные возраста введены неверно");
         } else return true;
     }
 
     public boolean hasAddress() {
         if (city == null) {
-            return false;
+            throw new IllegalStateException("данные адреса введены неверно");
         } else return true;
     }
 
