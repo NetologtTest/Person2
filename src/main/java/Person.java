@@ -48,8 +48,13 @@ public class Person {
         return surname;
     }
 
-   public OptionalInt getAge() {
-        return OptionalInt.of(age);
+  public OptionalInt getAge() {
+        if (age < 0) {
+            return OptionalInt.empty();
+        } else {
+            return OptionalInt.of(age);
+        }
+
     }
 
     public String getAddress() {
