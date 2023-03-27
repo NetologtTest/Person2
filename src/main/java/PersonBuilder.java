@@ -35,13 +35,16 @@ public class PersonBuilder {
 
     }
 
-    public Person build() { /*...*/
-       Person person = new Person(name, surname, age, city);
-        if (!person.hasAge()) {
-            throw new IllegalStateException("данные возраста введены неверно");
-        } else if (!person.hasAddress()) {
-            throw new IllegalStateException("данные адреса введены неверно");
-        }
+ public Person build() { /*...*/
+
+        Person person = new Person(name, surname, age, city);
+
+        person.getAge();
+        person.hasAge();
+
+        person.hasAddress();
+
+
         return person;
 
     }
