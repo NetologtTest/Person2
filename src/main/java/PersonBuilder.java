@@ -37,9 +37,10 @@ public class PersonBuilder {
     }
 
     public Person build() { /*...*/
-        Person person = new Person(name, surname, age, city);
-        OptionalInt a = OptionalInt.of(age);
-        if (a != person.getAge()) {
+       OptionalInt a = OptionalInt.of(age);
+        OptionalInt b = OptionalInt.of(PersonBuilder.this.age);
+        if (a != b) {
+            Person person = new Person(name, surname, age, city);
             if (!person.hasAge()) {
                 throw new IllegalArgumentException("данные возраста введены неверно");
             } else if (!person.hasAddress()) {
