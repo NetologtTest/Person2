@@ -1,5 +1,3 @@
-import java.util.OptionalInt;
-
 public class PersonBuilder {
 
     protected String name;
@@ -8,51 +6,45 @@ public class PersonBuilder {
     protected String city;
 
 
-    public PersonBuilder setName(String name1) {
-        PersonBuilder.this.name = name1;
-
-        return PersonBuilder.this;
+    public PersonBuilder setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("нету имени");
+        } else this.name = name;
+        return this;
     }
 
-    public PersonBuilder setSurname(String surname1) { /*...*/
-
-        PersonBuilder.this.surname = surname1;
-
-        return PersonBuilder.this;
+    public PersonBuilder setSurname(String surname) { /*...*/
+        if (surname == null || surname.isEmpty()) {
+            throw new IllegalArgumentException("не фамилии ");
+        } else this.surname = surname;
+        return this;
     }
 
-    public PersonBuilder setAge(int age1) { /*...*/
-
-        PersonBuilder.this.age = age1;
-        return PersonBuilder.this;
+    public PersonBuilder setAge(int age) { /*...*/
+        if (age < 0) {
+            throw new IllegalArgumentException("не правильный возраст");
+        } else this.age = age;
+        return this;
 
     }
 
-    public PersonBuilder setAddress(String address1) { /*...*/
+    public PersonBuilder setAddress(String address) { /*...*/
 
-        PersonBuilder.this.city = address1;
+        PersonBuilder.this.city = address;
 
         return PersonBuilder.this;
 
     }
 
     public Person build() { /*...*/
-       OptionalInt a = OptionalInt.of(age);
-        OptionalInt b = OptionalInt.of(PersonBuilder.this.age);
-        if (a != b) {
-            Person person = new Person(name, surname, age, city);
-            if (!person.hasAge()) {
-                throw new IllegalArgumentException("данные возраста введены неверно");
-            } else if (!person.hasAddress()) {
-                throw new IllegalStateException("данные адреса введены неверно");
-            }
-            return person;
-        } else {
 
-            Person person1 = new Person(name, surname);
-            return person1;
-        }
-
+        Person person;
+        if (name == null || surname == null)
+            throw new IllegalStateException("не работает");
+        if (age < 0) {
+            person = new Person(name, surname);
+        } else person = new Person(name, surname, age, city);
+        return person;
 
     }
 }
