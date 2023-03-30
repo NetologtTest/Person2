@@ -29,15 +29,11 @@ public class Person {
     }
 
     public boolean hasAge() {
-        if (age < 0) {
-            return false;
-        } else return true;
+        return age >= 0;
     }
 
     public boolean hasAddress() {
-        if (city == null) {
-            return false;
-        } else return true;
+        return city != null;
     }
 
     public String getName() {
@@ -51,11 +47,7 @@ public class Person {
 
     public OptionalInt getAge() {
 
-        if (OptionalInt.of(age).isPresent()) {
-            return OptionalInt.of(age);
-        } else {
-            return OptionalInt.empty();
-        }
+        return OptionalInt.of(age);
 
     }
 
@@ -63,10 +55,9 @@ public class Person {
         return city;
     }
 
-    public void setAddress(String address) {
-        PersonBuilder personBuilder = new PersonBuilder();
-        personBuilder.setAddress(address);
-        personBuilder.build();
+    public String setAddress(String address) {
+        this.city = address;
+        return this.city;
     }
 
     public void happyBirthday() {
@@ -95,6 +86,4 @@ public class Person {
         return person;
     }
 }
-
-
 
