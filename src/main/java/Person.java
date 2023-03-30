@@ -45,10 +45,13 @@ public class Person {
     }
 
 
-    public OptionalInt getAge() {
+  public OptionalInt getAge() {
+        if (hasAge()) {
+            return OptionalInt.of(age);
 
-        return OptionalInt.of(age);
-
+        } else {
+            return OptionalInt.empty();
+        }
     }
 
     public String getAddress() {
